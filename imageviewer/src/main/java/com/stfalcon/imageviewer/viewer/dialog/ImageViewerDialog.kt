@@ -18,6 +18,7 @@ package com.stfalcon.imageviewer.viewer.dialog
 
 import android.content.Context
 import android.view.KeyEvent
+import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
 import com.stfalcon.imageviewer.R
@@ -39,8 +40,15 @@ internal class ImageViewerDialog<T>(
         else
             R.style.ImageViewerDialog_Default
 
+    private val dialogSystemUiVisibility: Int
+        get() = if (builderData.shouldStatusBarHide)
+            0
+        else
+            View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+
     init {
         setupViewerView()
+
         dialog = AlertDialog
             .Builder(context, dialogStyle)
             .setView(viewerView)
@@ -50,6 +58,8 @@ internal class ImageViewerDialog<T>(
                 setOnShowListener { viewerView.open(builderData.transitionView, animateOpen) }
                 setOnDismissListener { builderData.onDismissListener?.onDismiss() }
             }
+
+        dialog.window?.decorView?.systemUiVisibility = dialogSystemUiVisibility
     }
 
     fun show(animate: Boolean) {
