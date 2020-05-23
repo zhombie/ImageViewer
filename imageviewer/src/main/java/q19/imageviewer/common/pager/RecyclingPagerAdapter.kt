@@ -8,8 +8,7 @@ import android.view.ViewGroup
 import androidx.viewpager.widget.PagerAdapter
 import q19.imageviewer.common.extensions.forEach
 
-internal abstract class RecyclingPagerAdapter<VH : RecyclingPagerAdapter.ViewHolder>
-    : PagerAdapter() {
+internal abstract class RecyclingPagerAdapter<VH : RecyclingPagerAdapter.ViewHolder> : PagerAdapter() {
 
     companion object {
         private val STATE = RecyclingPagerAdapter::class.java.simpleName
@@ -43,15 +42,15 @@ internal abstract class RecyclingPagerAdapter<VH : RecyclingPagerAdapter.ViewHol
         }
 
         return cache.getFreeViewHolder(parent, VIEW_TYPE_IMAGE)
-                .apply {
-                    attach(parent, position)
-                    onBindViewHolder(this as VH, position)
-                    onRestoreInstanceState(savedStates.get(getItemId(position)))
-                }
+            .apply {
+                attach(parent, position)
+                onBindViewHolder(this as VH, position)
+                onRestoreInstanceState(savedStates.get(getItemId(position)))
+            }
     }
 
     override fun isViewFromObject(view: View, obj: Any): Boolean =
-            obj is ViewHolder && obj.itemView === view
+        obj is ViewHolder && obj.itemView === view
 
     override fun saveState(): Parcelable? {
         for (viewHolder in getAttachedViewHolders()) {
@@ -86,7 +85,7 @@ internal abstract class RecyclingPagerAdapter<VH : RecyclingPagerAdapter.ViewHol
     }
 
     private class RecycleCache internal constructor(
-            private val adapter: RecyclingPagerAdapter<*>
+        private val adapter: RecyclingPagerAdapter<*>
     ) {
 
         internal val caches = mutableListOf<ViewHolder>()

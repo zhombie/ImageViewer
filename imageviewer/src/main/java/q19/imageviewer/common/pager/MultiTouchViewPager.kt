@@ -36,8 +36,8 @@ internal class MultiTouchViewPager @JvmOverloads constructor(
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
-        pageChangeListener = addOnPageChangeListener(
-            onPageScrollStateChanged = ::onPageScrollStateChanged)
+        pageChangeListener =
+            addOnPageChangeListener(onPageScrollStateChanged = ::onPageScrollStateChanged)
     }
 
     override fun onDetachedFromWindow() {
