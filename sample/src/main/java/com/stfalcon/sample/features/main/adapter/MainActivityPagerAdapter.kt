@@ -10,7 +10,7 @@ import com.stfalcon.sample.features.main.card.DemoCardFragment
 class MainActivityPagerAdapter(
     private val context: Context,
     fragmentManager: FragmentManager
-) : FragmentStatePagerAdapter(fragmentManager) {
+) : FragmentStatePagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     companion object {
         const val ID_IMAGES_GRID = 0

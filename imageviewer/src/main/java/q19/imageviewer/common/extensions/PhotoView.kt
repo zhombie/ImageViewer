@@ -16,7 +16,7 @@
 
 package q19.imageviewer.common.extensions
 
-import com.github.chrisbanes.photoview.PhotoView
+import q19.imageviewer.photo.PhotoView
 
 internal fun PhotoView.resetScale(animate: Boolean) {
     setScale(minimumScale, animate)

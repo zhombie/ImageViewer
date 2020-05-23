@@ -19,10 +19,10 @@ package q19.imageviewer.viewer.adapter
 import android.content.Context
 import android.view.View
 import android.view.ViewGroup
-import com.github.chrisbanes.photoview.PhotoView
 import q19.imageviewer.common.extensions.resetScale
 import q19.imageviewer.common.pager.RecyclingPagerAdapter
 import q19.imageviewer.loader.ImageLoader
+import q19.imageviewer.photo.PhotoView
 
 internal class ImagesPagerAdapter<T>(
     private val context: Context,
@@ -41,6 +41,7 @@ internal class ImagesPagerAdapter<T>(
         val photoView = PhotoView(context).apply {
             isEnabled = isZoomingAllowed
             setOnViewDragListener { _, _ -> setAllowParentInterceptOnEdge(scale == 1.0f) }
+            setOnViewDoubleTapListener { view, x, y ->  }
         }
 
         return ViewHolder(photoView).also { holders.add(it) }
