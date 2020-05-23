@@ -3,7 +3,7 @@ package com.stfalcon.sample.features.demo.rotation
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import com.stfalcon.imageviewer.StfalconImageViewer
+import com.stfalcon.imageviewer.ImageViewer
 import com.stfalcon.sample.R
 import com.stfalcon.sample.common.extensions.getDrawableCompat
 import com.stfalcon.sample.common.extensions.loadImage
@@ -21,7 +21,7 @@ class RotationDemoActivity : AppCompatActivity() {
     private var isDialogShown = false
     private var currentPosition: Int = 0
 
-    private lateinit var viewer: StfalconImageViewer<Poster>
+    private lateinit var viewer: ImageViewer<Poster>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,7 +55,7 @@ class RotationDemoActivity : AppCompatActivity() {
     }
 
     private fun openViewer(startPosition: Int) {
-        viewer = StfalconImageViewer.Builder<Poster>(this, Demo.posters, ::loadPosterImage)
+        viewer = ImageViewer.Builder<Poster>(this, Demo.posters, ::loadPosterImage)
             .withTransitionFrom(getTransitionTarget(startPosition))
             .withStartPosition(startPosition)
             .withImageChangeListener {

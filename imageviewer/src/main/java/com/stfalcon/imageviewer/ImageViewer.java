@@ -20,8 +20,14 @@ import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import androidx.annotation.*;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.ColorRes;
+import androidx.annotation.DimenRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Px;
 import androidx.core.content.ContextCompat;
+
 import com.stfalcon.imageviewer.listeners.OnDismissListener;
 import com.stfalcon.imageviewer.listeners.OnImageChangeListener;
 import com.stfalcon.imageviewer.loader.ImageLoader;
@@ -34,13 +40,13 @@ import java.util.List;
 
 //N.B.! This class is written in Java for convenient use of lambdas due to languages compatibility issues.
 @SuppressWarnings({"unused", "WeakerAccess"})
-public class StfalconImageViewer<T> {
+public class ImageViewer<T> {
 
     private Context context;
     private BuilderData<T> builderData;
     private ImageViewerDialog<T> dialog;
 
-    protected StfalconImageViewer(@NonNull Context context, @NonNull BuilderData<T> builderData) {
+    protected ImageViewer(@NonNull Context context, @NonNull BuilderData<T> builderData) {
         this.context = context;
         this.builderData = builderData;
         this.dialog = new ImageViewerDialog<>(context, builderData);
@@ -116,7 +122,7 @@ public class StfalconImageViewer<T> {
     }
 
     /**
-     * Builder class for {@link StfalconImageViewer}
+     * Builder class for {@link ImageViewer}
      */
     public static class Builder<T> {
 
@@ -299,31 +305,31 @@ public class StfalconImageViewer<T> {
         }
 
         /**
-         * Creates a {@link StfalconImageViewer} with the arguments supplied to this builder. It does not
+         * Creates a {@link ImageViewer} with the arguments supplied to this builder. It does not
          * show the dialog. This allows the user to do any extra processing
          * before displaying the dialog. Use {@link #show()} if you don't have any other processing
          * to do and want this to be created and displayed.
          */
-        public StfalconImageViewer<T> build() {
-            return new StfalconImageViewer<>(context, data);
+        public ImageViewer<T> build() {
+            return new ImageViewer<>(context, data);
         }
 
         /**
-         * Creates the {@link StfalconImageViewer} with the arguments supplied to this builder and
+         * Creates the {@link ImageViewer} with the arguments supplied to this builder and
          * shows the dialog.
          */
-        public StfalconImageViewer<T> show() {
+        public ImageViewer<T> show() {
             return show(true);
         }
 
         /**
-         * Creates the {@link StfalconImageViewer} with the arguments supplied to this builder and
+         * Creates the {@link ImageViewer} with the arguments supplied to this builder and
          * shows the dialog.
          *
          * @param animate whether the passed transition view should be animated on open. Useful for screen rotation handling.
          */
-        public StfalconImageViewer<T> show(boolean animate) {
-            StfalconImageViewer<T> viewer = build();
+        public ImageViewer<T> show(boolean animate) {
+            ImageViewer<T> viewer = build();
             viewer.show(animate);
             return viewer;
         }

@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
-import com.stfalcon.imageviewer.StfalconImageViewer
+import com.stfalcon.imageviewer.ImageViewer
 import com.stfalcon.sample.R
 import com.stfalcon.sample.common.extensions.showShortToast
 import com.stfalcon.sample.common.models.Demo
@@ -26,7 +26,7 @@ class StylingDemoActivity : BaseActivity() {
 
     private var options = StylingOptions()
     private var overlayView: PosterOverlayView? = null
-    private var viewer: StfalconImageViewer<Poster>? = null
+    private var viewer: ImageViewer<Poster>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,7 +51,7 @@ class StylingDemoActivity : BaseActivity() {
     private fun openViewer(startPosition: Int, imageView: ImageView) {
         val posters = Demo.posters.toMutableList()
 
-        val builder = StfalconImageViewer.Builder<Poster>(this, posters, ::loadPosterImage)
+        val builder = ImageViewer.Builder<Poster>(this, posters, ::loadPosterImage)
             .withStartPosition(startPosition)
             .withImageChangeListener { position ->
                 if (options.isPropertyEnabled(SHOW_TRANSITION)) {

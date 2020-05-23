@@ -16,9 +16,11 @@
 
 package com.stfalcon.imageviewer.listeners;
 
+import com.stfalcon.imageviewer.ImageViewer;
+
 /**
  * Interface definition for a callback to be invoked when
- * {@link com.stfalcon.imageviewer.StfalconImageViewer} was dismissed.
+ * {@link ImageViewer} was dismissed.
  * */
 //N.B.! This class is written in Java for convenient use of lambdas due to languages compatibility issues.
 public interface OnDismissListener {
