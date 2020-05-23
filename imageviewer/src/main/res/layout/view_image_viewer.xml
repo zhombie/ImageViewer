@@ -47,7 +47,7 @@
 
         </FrameLayout>
 
-        <com.stfalcon.imageviewer.common.pager.MultiTouchViewPager
+        <q19.imageviewer.common.pager.MultiTouchViewPager
             android:id="@+id/imagesPager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

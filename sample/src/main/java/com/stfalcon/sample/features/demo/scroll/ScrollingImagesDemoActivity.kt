@@ -3,7 +3,7 @@ package com.stfalcon.sample.features.demo.scroll
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import com.stfalcon.imageviewer.ImageViewer
+import q19.imageviewer.ImageViewer
 import com.stfalcon.sample.R
 import com.stfalcon.sample.common.extensions.getDrawableCompat
 import com.stfalcon.sample.common.extensions.loadImage
@@ -54,7 +54,7 @@ class ScrollingImagesDemoActivity : AppCompatActivity() {
         target: ImageView,
         images: List<String>,
         imageViews: List<ImageView>) {
-        viewer = ImageViewer.Builder<String>(this, images, ::loadImage)
+        viewer = ImageViewer.Builder(this, images, ::loadImage)
             .withStartPosition(startPosition)
             .withTransitionFrom(target)
             .withImageChangeListener { viewer.updateTransitionImage(imageViews.getOrNull(it)) }

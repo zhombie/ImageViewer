@@ -3,7 +3,7 @@ package com.stfalcon.sample.features.demo.grid
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import com.stfalcon.imageviewer.ImageViewer
+import q19.imageviewer.ImageViewer
 import com.stfalcon.sample.R
 import com.stfalcon.sample.common.extensions.getDrawableCompat
 import com.stfalcon.sample.common.extensions.loadImage
@@ -26,7 +26,7 @@ class PostersGridDemoActivity : AppCompatActivity() {
     }
 
     private fun openViewer(startPosition: Int, target: ImageView) {
-        viewer = ImageViewer.Builder<Poster>(this, Demo.posters, ::loadPosterImage)
+        viewer = ImageViewer.Builder(this, Demo.posters, ::loadPosterImage)
             .withStartPosition(startPosition)
             .withTransitionFrom(target)
             .withImageChangeListener {

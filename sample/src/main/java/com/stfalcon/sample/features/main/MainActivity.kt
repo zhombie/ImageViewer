@@ -16,8 +16,7 @@ import com.stfalcon.sample.features.main.adapter.MainActivityPagerAdapter.Compan
 import com.stfalcon.sample.features.main.card.DemoCardFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(),
-    DemoCardFragment.OnCardActionListener {
+class MainActivity : AppCompatActivity(), DemoCardFragment.OnCardActionListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +27,6 @@ class MainActivity : AppCompatActivity(),
             pageMargin = resources.getDimension(R.dimen.card_padding).toInt() / 4
             offscreenPageLimit = 3
         }
-        mainCardsPagerIndicator.setViewPager(mainCardsViewPager)
     }
 
     override fun onCardAction(actionId: Int) {
