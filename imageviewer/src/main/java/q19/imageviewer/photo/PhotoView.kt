@@ -16,7 +16,7 @@ import androidx.appcompat.widget.AppCompatImageView
  * is accomplished
  */
 internal class PhotoView @JvmOverloads constructor(
-    context: Context?,
+    context: Context,
     attr: AttributeSet? = null,
     defStyle: Int = 0
 ) : AppCompatImageView(context, attr, defStyle) {

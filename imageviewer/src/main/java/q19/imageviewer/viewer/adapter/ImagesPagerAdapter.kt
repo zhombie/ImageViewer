@@ -41,7 +41,7 @@ internal class ImagesPagerAdapter<T>(
         val photoView = PhotoView(context).apply {
             isEnabled = isZoomingAllowed
             setOnViewDragListener { _, _ -> setAllowParentInterceptOnEdge(scale == 1.0f) }
-            setOnViewDoubleTapListener { view, x, y ->  }
+            setOnViewDoubleTapListener { _, _, _ ->  }
         }
 
         return ViewHolder(photoView).also { holders.add(it) }
@@ -61,7 +61,7 @@ internal class ImagesPagerAdapter<T>(
 
     internal inner class ViewHolder(itemView: View) : RecyclingPagerAdapter.ViewHolder(itemView) {
 
-        internal var isScaled: Boolean = false
+        internal val isScaled: Boolean
             get() = photoView.scale > 1f
 
         private val photoView: PhotoView = itemView as PhotoView

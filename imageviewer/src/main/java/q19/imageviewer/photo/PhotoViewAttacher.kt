@@ -2,6 +2,7 @@
 
 package q19.imageviewer.photo
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Matrix
 import android.graphics.Matrix.ScaleToFit
@@ -27,6 +28,7 @@ import kotlin.math.*
  * It is made public in case you need to subclass something other than AppCompatImageView and still
  * gain the functionality that [PhotoView] offers
  */
+@SuppressLint("ClickableViewAccessibility")
 internal class PhotoViewAttacher(
     private val mImageView: ImageView
 ) : OnTouchListener, OnLayoutChangeListener {
@@ -213,7 +215,7 @@ internal class PhotoViewAttacher(
                     } else {
                         setScale(minimumScale, x, y, true)
                     }
-                    mViewDoubleTapListener?.invoke(mImageView, x, y);
+                    mViewDoubleTapListener?.invoke(mImageView, x, y)
                 } catch (e: ArrayIndexOutOfBoundsException) {
                     // Can sometimes happen when getX() and getY() is called
                 }
@@ -327,6 +329,7 @@ internal class PhotoViewAttacher(
         }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onTouch(v: View?, event: MotionEvent?): Boolean {
         var handled = false
         if (isZoomEnabled && hasDrawable((v as ImageView))) {
@@ -510,7 +513,7 @@ internal class PhotoViewAttacher(
         mImageView.imageMatrix = matrix
         // Call MatrixChangedListener if needed
         val displayRect = getDisplayRect(matrix)
-        mMatrixChangeListener?.onMatrixChanged(displayRect)
+        mMatrixChangeListener?.onMatrixChanged(displayRect ?: return)
     }
 
     /**
@@ -528,8 +531,8 @@ internal class PhotoViewAttacher(
      * @param matrix - Matrix to map Drawable against
      * @return RectF - Displayed Rectangle
      */
-    private fun getDisplayRect(matrix: Matrix): RectF {
-        val d = mImageView.drawable
+    private fun getDisplayRect(matrix: Matrix): RectF? {
+        val d = mImageView.drawable ?: return null
         mDisplayRect.set(0f, 0f, d.intrinsicWidth.toFloat(), d.intrinsicHeight.toFloat())
         matrix.mapRect(mDisplayRect)
         return mDisplayRect
@@ -598,7 +601,7 @@ internal class PhotoViewAttacher(
     }
 
     private fun checkMatrixBounds(): Boolean {
-        val rect = getDisplayRect(drawMatrix)
+        val rect = getDisplayRect(drawMatrix) ?: return false
         val height = rect.height()
         val width = rect.width()
         var deltaX = 0f
